@@ -1,0 +1,41 @@
+name: CI Workflow with Matrix (Fail Fast)
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: true         # Enable fail-fast to stop other jobs if any fail
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]   # Different OSes
+        python-version: [3.8, 3.9, 3.10, 3.11]             # Different Python versions
+
+    steps:
+    # Checkout the code
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # Set up Python
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    # Simulate test that fails on a specific combination
+    - name: Run tests
+      run: |
+        echo "Running tests on OS: ${{ matrix.os }} with Python version: ${{ matrix.python-version }}"
+        if [ "${{ matrix.python-version }}" = "3.8" ] && [ "${{ matrix.os }}" = "ubuntu-latest" ]; then
+          echo "Simulated test failure"
+          exit 1  # Simulating a test failure for Python 3.8 on Ubuntu
+        else
+          echo "All tests passed."
+        fi
