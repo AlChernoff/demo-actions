@@ -1,21 +1,13 @@
 name: Reusable Workflow
 
 on:
-  workflow_call:
-    inputs:
-      example-input:
-        description: 'An example input for the reusable workflow'
-        required: false
-        type: string
-        default: 'default-value'
+  workflow_call:   # Allows this workflow to be called from other workflows
+    # No inputs are defined
 
 jobs:
   example-job:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Print input
-      run: echo "The input value is: ${{ inputs.example-input }}"
-
-    - name: Run a task
-      run: echo "Running a reusable task..."
+    - name: Print a message
+      run: echo "This is a reusable workflow."
