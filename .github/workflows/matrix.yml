@@ -1,0 +1,41 @@
+name: CI Workflow with Matrix
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]   # Run on different OSes
+        python-version: [3.8, 3.9, 3.10, 3.11]             # Test multiple Python versions
+
+    steps:
+    # Checkout the code
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # Set up Python
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    # Install dependencies
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+
+    # Run tests
+    - name: Run tests
+      run: |
+        echo "Running tests on OS: ${{ matrix.os }} with Python version: ${{ matrix.python-version }}"
+        # Replace this with your test command
+        pytest
