@@ -21,6 +21,6 @@ jobs:
     - name: Simulate task with 10-second timeout
       run: |
         echo "Starting task with 10-second timeout..."
-        timeout 10s sleep 30    # Sleep for 30 seconds but timeout after 10 seconds
+        sleep 70    # Sleep for 70 seconds but timeout after 60 seconds
         echo "Task completed (or killed)."
       timeout-minutes: 1        # This is the shortest possible job-level timeout
