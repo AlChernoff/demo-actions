@@ -1,8 +1,7 @@
-# .github/workflows/reusable-workflow.yml
 name: Reusable Workflow
 
 on:
-  workflow_call:  # Allows this workflow to be called from other workflows
+  workflow_call:
     inputs:
       example-input:
         description: 'An example input for the reusable workflow'
@@ -19,6 +18,4 @@ jobs:
       run: echo "The input value is: ${{ inputs.example-input }}"
 
     - name: Run a task
-      run: |
-        echo "Running a reusable task..."
-        # Add commands to run the task
+      run: echo "Running a reusable task..."
