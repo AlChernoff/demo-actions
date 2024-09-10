@@ -1,6 +1,7 @@
 name: CI Workflow with Matrix (Continue on Error)
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main

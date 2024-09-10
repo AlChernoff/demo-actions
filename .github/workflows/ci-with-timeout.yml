@@ -1,6 +1,7 @@
 name: CI Workflow with Simulated 10-Second Timeout
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main

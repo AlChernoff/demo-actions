@@ -1,6 +1,7 @@
 name: Python Caching Example
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
