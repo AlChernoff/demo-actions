@@ -28,7 +28,7 @@ jobs:
         # Include specific custom combinations
         include:
           - os: ubuntu-latest
-            python-version: 3.8
+            python-version: 3.12
 
     steps:
     # Checkout the code
